@@ -1,0 +1,105 @@
+
+h3{
+  background-color: rgb(43, 90, 13);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+}
+
+@media (min-width: 790px) {
+  h3{
+    display: none;
+  }
+}
+
+.users--list{
+  list-style: none;
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.users--list > div{
+  background-color: white;
+  width: 48%;
+  display: block;
+  margin: 10px 2px;
+  padding: 20px;
+  border-radius: 0 10px 10px;
+}
+
+.users--list > div h6{
+  font-size: 1rem;
+  font-family: cursive;
+}
+
+@media (min-width: 790px) {
+  .users--list > div h6{
+    font-size: 1.8rem;
+  }
+}
+
+.users--list small{
+  font-weight: bold;
+  color: rgb(43, 90, 13);
+  text-align: right;
+  display: block;
+}
+
+@media (min-width: 790px) {
+  .users--list small{
+    font-weight: bold;
+    color: rgb(43, 90, 13);
+    text-align: right;
+    display: block;
+    font-size: 1.4rem;
+  }
+}
+
+.users--list--email{
+  margin: 10px auto;
+  color: #0b6f71;
+  font-weight: bold;
+}
+
+@media (min-width: 790px) {
+  .users--list--email{
+    font-size: 1.4rem;
+    margin: 10px auto;
+  }
+}
+
+.users--list--phones{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media (min-width: 790px) {
+  .users--list--phones{
+    font-size: 1.2rem;
+  }
+}
+
+.users--list--phones div{
+  display: flex;
+  width: 50%;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.users--list--phones div p{
+  font-weight: bold;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}

@@ -1,0 +1,19 @@
+ul{
+  list-style: none;
+}
+.sidebar-link{
+  font-size: 1.6rem;
+  color: gray;
+  padding: 10px;
+  transition: all 500ms;
+  border-radius: 2px;
+}
+.sidebar-link:hover{
+  cursor: pointer;
+  background-color: #F3EFEE;
+}
+
+.active{
+  color: rgb(103, 159, 66);
+  font-weight: bold;
+}

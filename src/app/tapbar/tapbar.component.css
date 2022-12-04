@@ -1,0 +1,32 @@
+ul{
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  background-color: #F3EFEE;
+  width: 100%;
+  height: 100%;
+  padding: 5px 30px;
+}
+
+ul li{
+  font-size: 2.5rem;
+  width: 40px;
+  height: 100%;
+  text-align: center;
+  border-radius: 10px;
+  transition: all 300ms;
+  color: gray;
+}
+
+ul li:hover{
+  animation: clicked alternate 100ms;
+}
+
+@keyframes clicked {
+  from{
+    color: gray;
+  }
+  to{
+    color: black;
+  }
+}

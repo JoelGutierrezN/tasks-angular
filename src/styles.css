@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  font-size: 62.5%;
+  font-family: Monospaced, Arial, "Times New Roman", serif;
+}
+
+body{
+  background: rgb(103,159,66);
+  background: linear-gradient(128deg, rgba(103,159,66,1) 26%, rgba(34,193,195,1) 100%);
+}
+
+.line-divisor{
+  width: 80%;
+  height: 10px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 0 0 15px 15px;
+}

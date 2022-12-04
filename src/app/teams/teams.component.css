@@ -1,0 +1,61 @@
+h3{
+  background-color: rgb(43, 90, 13);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+}
+
+@media (min-width: 790px) {
+  h3{
+    display: none;
+  }
+}
+
+.teams--list{
+  list-style: none;
+  margin-top: 40px;
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  transition: all 500ms;
+}
+
+.teams--list::-webkit-scrollbar{
+  display: none;
+}
+
+.teams--list li{
+  background-color: #F3EFEE;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
+}
+
+@media (min-width: 790px) {
+  .teams--list li{
+    padding: 20px;
+    justify-content: space-between;
+  }
+}
+
+.teams--list li h6{
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.teams--list li button{
+  border: none;
+  color: rgb(43, 90, 13);
+  font-weight: bold;
+  font-size: 1.6rem;
+}

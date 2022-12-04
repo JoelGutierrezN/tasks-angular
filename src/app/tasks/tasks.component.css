@@ -1,0 +1,80 @@
+h3{
+  background-color: rgb(43, 90, 13);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+}
+
+@media (min-width: 790px) {
+  h3{
+    display: none;
+  }
+}
+
+.tasks--list{
+  margin: 40px auto 10px auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  list-style: none;
+  height: auto;
+  overflow: scroll;
+  max-height: 80vh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  transition: all 500ms;
+}
+
+.tasks--list::-webkit-scrollbar{
+  display: none;
+}
+
+.tasks--list li{
+  padding: 10px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1px 0;
+  background-color: #F3EFEE;
+  border-radius: 0 20px 20px 0;
+}
+
+@media (min-width: 790px) {
+  .tasks--list li{
+    justify-content: space-between;
+  }
+
+  .tasks--list{
+    padding-top: 50px;
+    font-size: 1.3rem;
+  }
+}
+
+.tasks--list li:first-child{
+  margin-top: 20px;
+}
+
+.tasks--list li h6{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333333;
+  font-family: cursive;
+}
+
+.tasks--list strong{
+  color: #0b6f71;
+}
+
+.tasks--list li button{
+  border: none;
+  color: rgb(43, 90, 13);
+}
