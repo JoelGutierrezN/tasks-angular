@@ -4,71 +4,201 @@
 
 <div class="users--list">
 
-  <div>
-    <h6>Alondra Gonzales Chimal</h6>
-    <small>Empleado</small>
+  <div class="row w-75">
+    <div class="col-12 border-bottom border-5 border-success rounded">
+      <h4 class="fs-1 d-block text-primary">Usuarios</h4>
+    </div>
+  </div>
 
-    <p class="users--list--email">al221910321@gmail.com</p>
+  <div class="row w-75">
+    <div class="col-12 text-center">
+      <button class="btn btn-primary btn-lg fs-4 fw-bold" data-bs-toggle="modal" data-bs-target="#createUserModal">
+        Agregar Usuario
+      </button>
+    </div>
+  </div>
+
+  <div *ngFor="let user of users" class="shadow-lg border-bottom border-5 border-success rounded-top">
+    <h6>{{ user.fullname }}</h6>
+    <small>{{ getRole(user.role) }}</small>
+
+    <p class="users--list--email">{{ user.email }}</p>
     <div class="users--list--phones">
       <div>
         <p>Celular:</p>
-        <span>7226628263</span>
+        <span>{{ user.cellphone }}</span>
       </div>
       <div>
         <p>Telefono</p>
-        <span>7226628263</span>
+        <span>{{ user.phone }}</span>
+      </div>
+    </div>
+
+    <div class="row align-items-center justify-content-center mt-4">
+      <div class="col-4 text-center">
+        <button class="btn btn-success fs-5" (click)="setSelectedUser(user)" data-bs-toggle="modal"
+                data-bs-target="#userModal"><i class="bi bi-eye-fill"></i> <span
+          class="d-none d-lg-inline-block"> Ver</span></button>
+      </div>
+      <div class="col-4 text-center">
+        <button class="btn btn-success fs-5" (click)="setSelectedUser(user)" data-bs-toggle="modal"
+                data-bs-target="#editUserModal"><i class="bi bi-pencil-fill"></i> <span
+          class="d-none d-lg-inline-block"> Editar</span>
+        </button>
+      </div>
+      <div class="col-4 text-center">
+        <button class="btn btn-success fs-5" (click)="deleteUser(user)"><i class="bi bi-trash2-fill"></i> <span
+          class="d-none d-lg-inline-block"> Eliminar</span>
+        </button>
       </div>
     </div>
 
   </div>
+</div>
 
-  <div>
-    <h6>Iris Lazcano Ortiz</h6>
-    <small>Lider de Equipo</small>
-
-    <p class="users--list--email">al221910321@gmail.com</p>
-    <div class="users--list--phones">
-      <div>
-        <p>Celular:</p>
-        <span>7226628263</span>
+<!-- Modal -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div>
-        <p>Telefono</p>
-        <span>7226628263</span>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <h2>
+              {{ selectedUser?.fullname }}
+            </h2>
+          </div>
+          <div class="col-12 my-2">
+            <div class="row justify-content-center align-items-center text-center">
+              <span class="col-6 fs-5 fw-bold text-success"> <span
+                class="text-secondary">Correo Electronico</span> {{ selectedUser?.email }}</span>
+              <span class="col-6 fs-5 fw-bold text-success"> <span
+                class="text-secondary">Nombre de Usuario</span> {{ selectedUser?.username}}</span>
+            </div>
+          </div>
+          <div class="col-12 my-2">
+            <p class="text-success text-center d-block w-100 fs-5">
+              <span class="fw-bold text-secondary"> Genero: </span>
+              {{ selectedUser ? getGender(selectedUser?.gender) : '' }}
+            </p>
+          </div>
+          <div class="col-12 my-2">
+            <div class="row justify-content-center align-items-center">
+              <span class="col-6 text-center fs-5"> <span>Telefono:</span> {{ selectedUser?.phone}} </span>
+              <span class="col-6 text-center fs-5"> <span>Celular </span> {{ selectedUser?.cellphone }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn fs-5 btn-lg btn-outline-success" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div>
-    <h6>Juana Ines Sara Reyes</h6>
-    <small>Empleado</small>
-
-    <p class="users--list--email">al221910321@gmail.com</p>
-    <div class="users--list--phones">
-      <div>
-        <p>Celular:</p>
-        <span>7226628263</span>
+<!-- Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div>
-        <p>Telefono</p>
-        <span>7226628263</span>
+      <div class="modal-body">
+        <form [formGroup]="formUser" (ngSubmit)="saveUser(selectedUser)">
+          <div class="mb-3">
+            <label class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" formControlName="fullname" [value]="selectedUser?.fullname">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Nombre de usuario</label>
+            <input type="text" class="form-control" formControlName="username" [value]="selectedUser?.username">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Genero</label>
+            <select formControlName="gender" required>
+              <option value="0" selected disabled>Selecciona un Genero</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Correo electronico</label>
+            <input type="text" class="form-control" formControlName="email" [value]="selectedUser?.email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password" [value]="selectedUser?.password">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Telefono de Casa</label>
+            <input type="text" class="form-control" formControlName="phone" [value]="selectedUser?.phone">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Telefono celular</label>
+            <input type="text" class="form-control" formControlName="cellphone" [value]="selectedUser?.cellphone">
+          </div>
+          <div class="mb-3 text-center w-100">
+            <button class="btn btn-success fs-5 fw-bold" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn fs-5 btn-lg btn-outline-success" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div>
-    <h6>Montserrat Cerro Ortiz</h6>
-    <small>Empleado</small>
-
-    <p class="users--list--email">al221910321@gmail.com</p>
-    <div class="users--list--phones">
-      <div>
-        <p>Celular:</p>
-        <span>7226628263</span>
+<div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div>
-        <p>Telefono</p>
-        <span>7226628263</span>
+      <div class="modal-body">
+        <form [formGroup]="formUser" (ngSubmit)="createUser()">
+          <div class="mb-3">
+            <label class="form-label">Nombre Completo</label>
+            <input type="text" class="form-control" formControlName="fullname">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" formControlName="username">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Genero</label>
+            <select formControlName="gender" required>
+              <option value="0" selected disabled>Selecciona un Genero</option>
+              <option value="M">Masculino</option>
+              <option value="F">Femenino</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Correo electronico</label>
+            <input type="text" class="form-control" formControlName="email">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Telefono de Casa</label>
+            <input type="text" class="form-control" formControlName="phone">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Telefono celular</label>
+            <input type="text" class="form-control" formControlName="cellphone">
+          </div>
+          <div class="mb-3 text-center w-100">
+            <button class="btn btn-success fs-5 fw-bold" type="submit">Guardar</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn fs-5 btn-lg btn-outline-success" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

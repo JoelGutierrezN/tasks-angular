@@ -5,6 +5,40 @@
   padding: 0;
 }
 
+.text-success{
+  color: #C3B1E1!important;
+}
+
+.text-primary{
+  color: #4c229b!important;
+}
+
+.border-success{
+  border-color: #C3B1E1!important;
+}
+
+.btn-success{
+  background-color: #C3B1E1!important;
+  border-color: #4c229b!important;
+  color: #4c229b;
+}
+
+.btn-success:hover{
+  background-color: #4c229b!important;
+  color: white;
+}
+
+.btn-primary{
+  background-color: #4c229b!important;
+  border-color: #4c229b!important;
+  color: white;
+}
+
+.btn-primary:hover{
+  background-color: #C3B1E1!important;
+  color: #4c229b;
+}
+
 html{
   font-size: 62.5%;
   font-family: Monospaced, Arial, "Times New Roman", serif;
